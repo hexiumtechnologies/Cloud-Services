@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{{ super() }}
+<style>
+    .welcome-container {
+        margin: 0;
+        padding: 24px;
+        width: 100%;
+    }
+    
+    .welcome-header {
+        color: rgba(255, 255, 255, 0.80);
+        font-family: Figtree;
+        font-size: 1.8rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: 0.2px;
+        margin: 0 0 8px 0;
+    }
+    
+    .subheading {
+        color: rgba(255, 255, 255, 0.50);
+        font-family: Figtree;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+        font-size: 1.1rem;
+        letter-spacing: 0.39px;
+        margin: 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="welcome-container">
+    <h1 class="welcome-header">Get started with HCS</h1>
+    <h2 class="subheading">This page is not done yet.</h2>
+</div>
+{% endblock %}

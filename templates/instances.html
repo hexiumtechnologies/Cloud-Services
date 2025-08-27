@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block styles %}
+{{ super() }}
+<style>
+    .welcome-container {
+        margin: 0;
+        padding: 24px;
+        width: 100%;
+    }
+    
+    .welcome-header {
+        color: rgba(255, 255, 255, 0.80);
+        font-family: Figtree;
+        font-size: 1.8rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: 0.2px;
+        margin: 0 0 8px 0;
+    }
+    
+    .subheading {
+        color: rgba(255, 255, 255, 0.50);
+        font-family: Figtree;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+        font-size: 1.1rem;
+        letter-spacing: 0.39px;
+        margin: 0 0 16px 0;
+    }
+    
+    .instance-card {
+        background: rgba(255, 255, 255, 0.02);
+        border-left: 5px solid #007CFF;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        padding: 16px;
+        max-width: 300px;
+        margin-bottom: 16px;
+    }
+    
+    .instance-pic {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 4px;
+        margin-right: 16px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+    }
+    
+    .instance-pic img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 6px;
+    }
+    
+    .instance-name {
+        color: rgba(255, 255, 255, 0.80);
+        font-family: Figtree;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: 0.39px;
+        margin: 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="welcome-container">
+    <h1 class="welcome-header">Instances</h1>
+    <h2 class="subheading">Create, set up and deploy instances.</h2>
+    
+    <div class="instance-card">
+        <div class="instance-pic">
+            <img src="{{ url_for('static', filename='images/hexium_pyvm.svg') }}" alt="Instance">
+        </div>
+        <span class="instance-name">Untitled Instance</span>
+    </div>
+</div>
+{% endblock %}

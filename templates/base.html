@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexium Cloud Services</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+    {% block styles %}{% endblock %}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #191919;
+            color: #0a0a0a;
+            font-family: Figtree;
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            background-color: #141414;
+            height: 54px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 32px 25px;
+            gap: 16px;
+        }
+        
+        .logo {
+            height: 28px;
+            width: auto;
+            display: flex;
+            align-items: center;
+            margin-right: 4px;
+        }
+        
+        .logo img {
+            height: 100%;
+            width: auto;
+            display: block;
+        }
+        
+        .dropdown {
+            display: flex;
+            align-items: center;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: #141414;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.05s;
+            padding-bottom: 10px;
+        }
+        
+        .dropdown:hover {
+            background: #171717;
+        }
+        
+        .dropdown-icon {
+            margin-left: 8px;
+            width: 16px;
+            height: 16px;
+            opacity: 0.7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .dropdown-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+        }
+        
+        .main-container {
+            display: flex;
+            min-height: calc(100vh - 54px);
+        }
+        
+        .sidebar {
+            width: 200px;
+            background-color: #141414;
+            padding: 12px;
+        }
+        
+        .nav-button {
+            display: flex;
+            padding: 12px 12px;
+            align-items: center;
+            gap: 10px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-family: 'Figtree', sans-serif;
+            font-size: 13.8px;
+            font-weight: 500;
+            line-height: normal;
+            letter-spacing: 0.39px;
+            transition: all 0.085s;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            background: none;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+        }
+        
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.05);
+            text-decoration: none;
+        }
+        
+        .nav-button.selected {
+            background: #007CFF;
+            color: #000;
+        }
+        
+        .nav-icon {
+            width: 16px;
+            height: 16px;
+            opacity: 0.6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+        }
+        
+        .nav-button.selected .nav-icon img {
+            opacity: 1;
+            filter: none;
+        }
+        
+        .nav-button.selected img {
+            opacity: 0.8;
+            filter: none;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/hexcloud.svg') }}" alt="Hexium Cloud">
+        </div>
+        <div class="dropdown">
+            Hexium Cloud Services
+            <span class="dropdown-icon">
+                <img src="{{ url_for('static', filename='images/arrow_down.svg') }}" alt="">
+            </span>
+        </div>
+    </nav>
+    <div class="main-container">
+        <div class="sidebar">
+            <a href="{{ url_for('home') }}" class="nav-button {% if active_page == 'home' %}selected{% endif %}" data-section="home">
+                <span class="nav-icon">
+                    <img src="{{ url_for('static', filename='images/house.svg') }}" alt="Home">
+                </span>
+                <span>Home</span>
+            </a>
+            <a href="{{ url_for('instances') }}" class="nav-button {% if active_page == 'instances' %}selected{% endif %}" data-section="instances">
+                <span class="nav-icon">
+                    <img src="{{ url_for('static', filename='images/crate.svg') }}" alt="Instances">
+                </span>
+                <span>Instances</span>
+            </a>
+        </div>
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    <script>
+        // Defer non-critical JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.nav-button').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (!this.classList.contains('selected')) {
+                        document.querySelectorAll('.nav-button').forEach(btn => {
+                            btn.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
